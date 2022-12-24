@@ -1,0 +1,16 @@
+# dependencies
+/node_modules
+/yarn.lock
+
+# tests
+/coverage
+
+# prisma
+/prisma/migrations
+
+# build
+/dist
+
+# files
+.eslintrc.json
+.prettierrc

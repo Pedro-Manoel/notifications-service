@@ -21,10 +21,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@application/*": ["./src/application/*"],
-      "@helpers/*": ["./src/helpers/*"],
+      "@core/*": ["./src/core/*"],
       "@infra/*": ["./src/infra/*"],
-      "@test/*": ["./test/*"]
+      "@modules/*": ["./src/modules/*"],
+      "@shared/*": ["./src/shared/*"]
     }
   }
 }

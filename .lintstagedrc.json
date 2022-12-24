@@ -1,0 +1,5 @@
+{
+  "*.(j|t)s(x|)": ["yarn lint --fix"],
+  "*.prisma": ["npx prisma format"],
+  "*": ["yarn style:format"]
+}
