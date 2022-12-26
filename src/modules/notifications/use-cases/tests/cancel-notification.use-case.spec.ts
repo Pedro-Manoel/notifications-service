@@ -1,4 +1,4 @@
-import { makeTestNotification } from '@modules/notifications/domain/entities/tests/factories/test-notification-factory';
+import { makeTestNotification } from '@modules/notifications/domain/entities/factories/notification.factory';
 import { InMemoryNotificationsRepository } from '@modules/notifications/domain/repositories/in-memory/in-memory-notifications.repository';
 
 import { CancelNotificationUseCase } from '../cancel-notification.use-case';

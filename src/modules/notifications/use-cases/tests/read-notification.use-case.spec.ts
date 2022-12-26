@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 
-import { makeTestNotification } from '@modules/notifications/domain/entities/tests/factories/test-notification-factory';
+import { makeTestNotification } from '@modules/notifications/domain/entities/factories/notification.factory';
 import { InMemoryNotificationsRepository } from '@modules/notifications/domain/repositories/in-memory/in-memory-notifications.repository';
 
 import { NotificationNotFoundError } from '../errors/notification-not-found.error';
