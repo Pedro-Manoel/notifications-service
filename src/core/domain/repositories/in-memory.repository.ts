@@ -8,13 +8,13 @@ export abstract class InMemoryRepository<T extends Entity<any>> {
   }
 
   async findById(id: string): Promise<T | null> {
-    const entity = this.entities.find((item) => item.id === id) || null;
+    const entity = this.entities.find((item) => item.id.equals(id)) || null;
 
     return entity;
   }
 
   async existsById(id: string): Promise<boolean> {
-    const entityExists = this.entities.some((item) => item.id === id);
+    const entityExists = this.entities.some((item) => item.id.equals(id));
 
     return entityExists;
   }
@@ -24,7 +24,7 @@ export abstract class InMemoryRepository<T extends Entity<any>> {
   }
 
   async update(entity: T): Promise<void> {
-    const index = this.entities.findIndex((item) => item.id === entity.id);
+    const index = this.entities.findIndex((item) => item.id.equals(entity.id));
 
     if (index >= 0) {
       this.entities[index] = entity;
@@ -32,7 +32,7 @@ export abstract class InMemoryRepository<T extends Entity<any>> {
   }
 
   async save(entity: T): Promise<void> {
-    const index = this.entities.findIndex((item) => item.id === entity.id);
+    const index = this.entities.findIndex((item) => item.id.equals(entity.id));
 
     if (index === -1) {
       this.entities.push(entity);
@@ -42,7 +42,7 @@ export abstract class InMemoryRepository<T extends Entity<any>> {
   }
 
   async delete(id: string): Promise<void> {
-    const index = this.entities.findIndex((item) => item.id === id);
+    const index = this.entities.findIndex((item) => item.id.equals(id));
 
     if (index !== -1) {
       this.entities.splice(index, 1);

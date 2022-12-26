@@ -1,9 +1,10 @@
 import { Entity, PropsConstructor } from '@core/domain/entities/entity';
+import { Id } from '@core/domain/entities/id';
 
 import { Content } from './content';
 
 interface INotificationProps {
-  recipientId: string;
+  recipientId: Id;
   content: Content;
   category: string;
   readAt?: Date | null;

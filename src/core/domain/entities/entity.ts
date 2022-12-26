@@ -1,9 +1,9 @@
-import { randomUUID } from 'node:crypto';
-
 import { Replace } from '@shared/types/replace';
 
+import { Id } from './id';
+
 interface IEntityProps {
-  id: string;
+  id: Id;
   createdAt: Date;
   updatedAt?: Date | null;
 }
@@ -11,13 +11,13 @@ interface IEntityProps {
 type Props<T> = T & IEntityProps;
 
 export type PropsConstructor<T> = T &
-  Replace<IEntityProps, { createdAt?: Date; id?: string }>;
+  Replace<IEntityProps, { createdAt?: Date; id?: Id }>;
 
 export abstract class Entity<T> implements IEntityProps {
   protected readonly props: Props<T>;
 
   constructor(props: PropsConstructor<T>) {
-    props.id = props.id || randomUUID();
+    props.id = props.id || Id.create();
     props.createdAt = props.createdAt || new Date();
     props.updatedAt = props.updatedAt || new Date();
     this.props = props as Props<T>;

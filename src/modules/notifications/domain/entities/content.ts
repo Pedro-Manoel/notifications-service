@@ -11,15 +11,15 @@ export class Content extends ValueObject<string> {
     return content;
   }
 
-  private validateContentLenght(content: string): boolean {
-    return content.length >= 5 && content.length <= 240;
+  private validateContentLenght(content: string) {
+    const isValid = content.length >= 5 && content.length <= 240;
+
+    if (!isValid) {
+      throw new Error('Content lenght error.');
+    }
   }
 
   validate() {
-    const isContentLenghValid = this.validateContentLenght(this.value);
-
-    if (!isContentLenghValid) {
-      throw new Error('Content lenght error.');
-    }
+    this.validateContentLenght(this.value);
   }
 }

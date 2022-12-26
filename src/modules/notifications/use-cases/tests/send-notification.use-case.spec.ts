@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 import { InMemoryNotificationsRepository } from '@modules/notifications/domain/repositories/in-memory/in-memory-notifications.repository';
 
 import { SendNotificationUseCase } from '../send-notification.use-case';
@@ -8,11 +10,12 @@ describe('Send notification use case', () => {
     const sendNotificationUseCase = new SendNotificationUseCase(
       notificationsRepository,
     );
+    const uuid = randomUUID();
 
     const { notification } = await sendNotificationUseCase.execute({
       content: 'Welcome to the system!',
       category: 'social',
-      recipientId: '123',
+      recipientId: uuid,
     });
 
     expect(notificationsRepository.entities).toHaveLength(1);

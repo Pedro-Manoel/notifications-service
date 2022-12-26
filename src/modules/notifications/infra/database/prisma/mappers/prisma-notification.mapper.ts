@@ -1,4 +1,4 @@
-import { Content } from '@modules/notifications/domain/entities/content';
+import { makeNotification } from '@modules/notifications/domain/entities/factories/notification.factory';
 import { Notification } from '@modules/notifications/domain/entities/notification';
 import { Notification as PrismaNotification } from '@prisma/client';
 
@@ -14,10 +14,10 @@ export class PrismaNotificationMapper {
       createdAt,
     } = prismaNotification;
 
-    return Notification.create({
+    return makeNotification({
       id,
       category,
-      content: Content.create(content),
+      content,
       recipientId,
       readAt,
       canceledAt,
@@ -25,16 +25,24 @@ export class PrismaNotificationMapper {
     });
   }
 
-  static toPersistence(notification: Notification) {
-    const { id, content, category, recipientId, readAt, createdAt } =
-      notification;
-
-    return {
+  static toPersistence(notification: Notification): PrismaNotification {
+    const {
       id,
+      content,
       category,
-      content: content.value,
       recipientId,
       readAt,
+      canceledAt,
+      createdAt,
+    } = notification;
+
+    return {
+      id: id.value,
+      category,
+      content: content.value,
+      recipientId: recipientId.value,
+      readAt: readAt ? readAt : null,
+      canceledAt: canceledAt ? canceledAt : null,
       createdAt,
     };
   }

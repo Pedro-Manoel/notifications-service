@@ -15,7 +15,7 @@ describe('Calcel notification use case', () => {
 
     await notificationsRepository.create(notification);
 
-    await cancelNotificationUseCase.execute({ id: notification.id });
+    await cancelNotificationUseCase.execute({ id: notification.id.value });
 
     expect(notificationsRepository.entities[0].canceledAt).toEqual(
       expect.any(Date),

@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 import { makeTestNotification } from '@modules/notifications/domain/entities/tests/factories/test-notification-factory';
 import { InMemoryNotificationsRepository } from '@modules/notifications/domain/repositories/in-memory/in-memory-notifications.repository';
 
@@ -15,7 +17,7 @@ describe('Unread notification use case', () => {
 
     await notificationsRepository.create(notification);
 
-    await unreadNotificationUseCase.execute({ id: notification.id });
+    await unreadNotificationUseCase.execute({ id: notification.id.value });
 
     expect(notificationsRepository.entities[0].readAt).toBeNull();
   });
@@ -25,9 +27,10 @@ describe('Unread notification use case', () => {
     const unreadNotificationUseCase = new UnreadNotificationUseCase(
       notificationsRepository,
     );
+    const uuid = randomUUID();
 
     expect(() => {
-      return unreadNotificationUseCase.execute({ id: 'fake-id' });
+      return unreadNotificationUseCase.execute({ id: uuid });
     }).rejects.toThrow(NotificationNotFoundError);
   });
 });

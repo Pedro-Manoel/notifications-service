@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 import { makeTestNotification } from '@modules/notifications/domain/entities/tests/factories/test-notification-factory';
 import { InMemoryNotificationsRepository } from '@modules/notifications/domain/repositories/in-memory/in-memory-notifications.repository';
 
@@ -15,7 +17,7 @@ describe('Read notification use case', () => {
 
     await notificationsRepository.create(notification);
 
-    await readNotificationUseCase.execute({ id: notification.id });
+    await readNotificationUseCase.execute({ id: notification.id.value });
 
     expect(notificationsRepository.entities[0].readAt).toEqual(
       expect.any(Date),
@@ -27,9 +29,10 @@ describe('Read notification use case', () => {
     const readNotificationUseCase = new ReadNotificationUseCase(
       notificationsRepository,
     );
+    const uuid = randomUUID();
 
     expect(() => {
-      return readNotificationUseCase.execute({ id: 'fake-id' });
+      return readNotificationUseCase.execute({ id: uuid });
     }).rejects.toThrow(NotificationNotFoundError);
   });
 });

@@ -1,4 +1,6 @@
-import { makeTestNotification } from '@modules/notifications/domain/entities/tests/factories/test-notification-factory';
+import { randomUUID } from 'crypto';
+
+import { makeTestNotification } from '@modules/notifications/domain/entities/factories/notification.factory';
 import { InMemoryNotificationsRepository } from '@modules/notifications/domain/repositories/in-memory/in-memory-notifications.repository';
 
 import { GetRecipientNotificationsUseCase } from '../get-recipient-notifications.use-case';
@@ -9,27 +11,30 @@ describe('Get recipient notifications use case', () => {
     const getRecipientNotificationsUseCase =
       new GetRecipientNotificationsUseCase(notificationsRepository);
 
+    const uuid1 = randomUUID();
+    const uuid2 = randomUUID();
+
     await notificationsRepository.create(
-      makeTestNotification({ recipientId: '123' }),
+      makeTestNotification({ recipientId: uuid1 }),
     );
 
     await notificationsRepository.create(
-      makeTestNotification({ recipientId: '123' }),
+      makeTestNotification({ recipientId: uuid1 }),
     );
 
     await notificationsRepository.create(
-      makeTestNotification({ recipientId: '321' }),
+      makeTestNotification({ recipientId: uuid2 }),
     );
 
     const { notifications } = await getRecipientNotificationsUseCase.execute({
-      recipientId: '123',
+      recipientId: uuid1,
     });
 
     expect(notifications).toHaveLength(2);
     expect(notifications).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ recipientId: '123' }),
-        expect.objectContaining({ recipientId: '123' }),
+        expect.objectContaining({ recipientId: { _value: uuid1 } }),
+        expect.objectContaining({ recipientId: { _value: uuid1 } }),
       ]),
     );
   });

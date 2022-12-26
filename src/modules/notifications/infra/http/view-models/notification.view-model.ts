@@ -2,13 +2,14 @@ import { Notification } from '@modules/notifications/domain/entities/notificatio
 
 export class NotificationViewModel {
   static toHTTP(notification: Notification) {
-    const { id, content, category, recipientId } = notification;
+    const { id, content, category, recipientId, createdAt } = notification;
 
     return {
-      id,
+      id: id.value,
       content: content.value,
       category,
-      recipientId,
+      recipientId: recipientId.value,
+      createdAt,
     };
   }
 }
