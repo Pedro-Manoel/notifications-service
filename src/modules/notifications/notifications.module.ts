@@ -1,5 +1,6 @@
 import { DatabaseModule } from '@infra/database/database.module';
 import { Module } from '@nestjs/common';
+import { ApiTagsModule } from '@shared/infra/docs/swagger/decorators/api-tags-module.decorator';
 
 import { NotificationsRepository } from './domain/repositories/notifications.repository';
 import { PrismaNotificationsRepository } from './infra/database/prisma/repositories/prisma-notifications.repository';
@@ -16,6 +17,7 @@ import { ReadNotificationUseCase } from './use-cases/read-notification.use-case'
 import { SendNotificationUseCase } from './use-cases/send-notification.use-case';
 import { UnreadNotificationUseCase } from './use-cases/unread-notification.use-case';
 
+@ApiTagsModule('notifications')
 @Module({
   imports: [DatabaseModule],
   controllers: [
