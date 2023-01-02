@@ -1,17 +1,17 @@
 import { Injectable, OnModuleDestroy } from '@nestjs/common';
 import { ServerKafka } from '@nestjs/microservices';
 
-import { kafkaConfig } from '../config/kafka.config';
+import { KafkaConfig } from '../config/kafka.config';
 
 @Injectable()
 export class KafkaConsumerService
   extends ServerKafka
   implements OnModuleDestroy
 {
-  constructor() {
+  constructor(kafkaConfig: KafkaConfig) {
     super({
       client: {
-        clientId: 'notifications',
+        clientId: kafkaConfig.consumerClientId,
         brokers: kafkaConfig.brokers,
       },
     });

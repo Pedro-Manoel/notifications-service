@@ -1,9 +1,10 @@
+import { DatabaseConfig } from '@infra/database/config/database.config';
 import { Module } from '@nestjs/common';
 
 import { PrismaService } from './services/prisma.service';
 
 @Module({
-  providers: [PrismaService],
+  providers: [DatabaseConfig, PrismaService],
   exports: [PrismaService],
 })
 export class PrismaModule {}

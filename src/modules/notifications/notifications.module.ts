@@ -1,6 +1,6 @@
 import { DatabaseModule } from '@infra/database/database.module';
+import { ApiTagsModule } from '@infra/docs/swagger/decorators/api-tags-module.decorator';
 import { Module } from '@nestjs/common';
-import { ApiTagsModule } from '@shared/infra/docs/swagger/decorators/api-tags-module.decorator';
 
 import { NotificationsRepository } from './domain/repositories/notifications.repository';
 import { PrismaNotificationsRepository } from './infra/database/prisma/repositories/prisma-notifications.repository';
