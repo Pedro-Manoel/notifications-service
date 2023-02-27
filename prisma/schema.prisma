@@ -10,14 +10,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum CategoryType {
+  ALERT
+  NEWS
+  UPDATE
+  REMINDER
+  CONFIRMATION
+}
+
 model Notification {
-  id          String    @id
+  id          String       @id
   recipientId String
   content     String
-  category    String
+  category    CategoryType
   readAt      DateTime?
   canceledAt  DateTime?
-  createdAt   DateTime  @default(now())
+  createdAt   DateTime     @default(now())
 
   @@index([recipientId])
 }

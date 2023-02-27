@@ -1,6 +1,9 @@
-import { makeNotification } from '@modules/notifications/domain/entities/factories/notification.factory';
+import { NotificationFactory } from '@modules/notifications/domain/entities/factories/notification.factory';
 import { Notification } from '@modules/notifications/domain/entities/notification';
-import { Notification as PrismaNotification } from '@prisma/client';
+import {
+  CategoryType,
+  Notification as PrismaNotification,
+} from '@prisma/client';
 
 export class PrismaNotificationMapper {
   static toDomain(prismaNotification: PrismaNotification): Notification {
@@ -14,7 +17,7 @@ export class PrismaNotificationMapper {
       createdAt,
     } = prismaNotification;
 
-    return makeNotification({
+    return NotificationFactory.makeNotification({
       id,
       category,
       content,
@@ -38,7 +41,7 @@ export class PrismaNotificationMapper {
 
     return {
       id: id.value,
-      category,
+      category: category.value as CategoryType,
       content: content.value,
       recipientId: recipientId.value,
       readAt: readAt ? readAt : null,

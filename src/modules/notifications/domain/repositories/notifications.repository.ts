@@ -1,9 +1,17 @@
 import { Notification } from '../entities/notification';
 
+export interface IFindAllFilters {
+  recipientId?: string;
+}
+
+export interface ICountFilters {
+  recipientId?: string;
+}
+
 export abstract class NotificationsRepository {
-  abstract create(notification: Notification): Promise<void>;
-  abstract findById(id: string): Promise<Notification | null>;
+  abstract create(notification: Notification): Promise<Notification>;
   abstract save(notification: Notification): Promise<void>;
-  abstract countManyByRecipientId(recipientId: string): Promise<number>;
-  abstract findManyByRecipientId(recipientId: string): Promise<Notification[]>;
+  abstract findAll(filters: IFindAllFilters): Promise<Notification[]>;
+  abstract findById(id: string): Promise<Notification | null>;
+  abstract count(filters: ICountFilters): Promise<number>;
 }

@@ -27,8 +27,9 @@ export class GetRecipientNotificationsUseCase
   ): Promise<IGetRecipientNotificationsResponse> {
     const { recipientId } = request;
 
-    const notifications =
-      await this.notificationsRepository.findManyByRecipientId(recipientId);
+    const notifications = await this.notificationsRepository.findAll({
+      recipientId,
+    });
 
     return { notifications };
   }

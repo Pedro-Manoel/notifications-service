@@ -1,13 +1,6 @@
 export abstract class ValueObject<T> {
-  private readonly _value: T;
-
-  constructor(value: T) {
-    this._value = value;
+  protected constructor(readonly value: T) {
     this.validate();
-  }
-
-  get value(): T {
-    return this._value;
   }
 
   equals(obj: ValueObject<T> | T): boolean {

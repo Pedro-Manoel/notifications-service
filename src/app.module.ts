@@ -1,10 +1,9 @@
+import { GlobalConfig } from '@config/global/global.config';
+import { DatabaseModule } from '@infra/database/database.module';
 import { MessagingModule } from '@infra/messaging/messaging.module';
 import { DomainModule } from '@modules/domain.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
-import { GlobalConfig } from './config/global/global.config';
-import { DatabaseModule } from './infra/database/database.module';
 
 @Module({
   imports: [

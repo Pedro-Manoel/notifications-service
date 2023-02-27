@@ -15,6 +15,7 @@
     "strict": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "strictPropertyInitialization": false,
@@ -25,7 +26,8 @@
       "@core/*": ["./src/core/*"],
       "@infra/*": ["./src/infra/*"],
       "@modules/*": ["./src/modules/*"],
-      "@shared/*": ["./src/shared/*"]
+      "@shared/*": ["./src/shared/*"],
+      "@test/*": ["./test/*"]
     }
   }
 }

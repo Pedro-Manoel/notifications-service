@@ -57,11 +57,11 @@ networks:
     driver: bridge
 
 volumes:
-  postgres_data:
+  postgres-data:
     driver: local
-  zookeeper_data:
+  zookeeper-data:
     driver: local
-  kafka_data:
+  kafka-data:
     driver: local
-  kafdrop_data:
+  kafdrop-data:
     driver: local

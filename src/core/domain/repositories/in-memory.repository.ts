@@ -3,7 +3,23 @@ import { Entity } from '../entities/entity';
 export abstract class InMemoryRepository<T extends Entity<any>> {
   public readonly entities: T[] = [];
 
-  async findAll(): Promise<T[]> {
+  async create(entity: T): Promise<T> {
+    this.entities.push(entity);
+
+    return entity;
+  }
+
+  async save(entity: T): Promise<void> {
+    const index = this.entities.findIndex((item) => item.id.equals(entity.id));
+
+    if (index === -1) {
+      this.entities.push(entity);
+    } else {
+      this.entities[index] = entity;
+    }
+  }
+
+  async findAll(...args: any[]): Promise<T[]> {
     return this.entities;
   }
 
@@ -13,30 +29,20 @@ export abstract class InMemoryRepository<T extends Entity<any>> {
     return entity;
   }
 
+  async count(...args: any[]): Promise<number> {
+    return this.entities.length;
+  }
+
   async existsById(id: string): Promise<boolean> {
     const entityExists = this.entities.some((item) => item.id.equals(id));
 
     return entityExists;
   }
 
-  async create(entity: T): Promise<void> {
-    this.entities.push(entity);
-  }
-
   async update(entity: T): Promise<void> {
     const index = this.entities.findIndex((item) => item.id.equals(entity.id));
 
     if (index >= 0) {
-      this.entities[index] = entity;
-    }
-  }
-
-  async save(entity: T): Promise<void> {
-    const index = this.entities.findIndex((item) => item.id.equals(entity.id));
-
-    if (index === -1) {
-      this.entities.push(entity);
-    } else {
       this.entities[index] = entity;
     }
   }

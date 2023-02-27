@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 
-import { Id } from '../id';
+import { Id } from './id';
 
 describe('Id', () => {
   it('should be able to create id', () => {

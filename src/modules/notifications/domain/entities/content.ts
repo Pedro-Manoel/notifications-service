@@ -1,9 +1,8 @@
 import { ValueObject } from '@shared/models/value-object';
 
 export class Content extends ValueObject<string> {
-  private constructor(value: string) {
-    super(value);
-  }
+  static readonly MIN_LENGTH = 5;
+  static readonly MAX_LENGTH = 240;
 
   static create(value: string) {
     const content = new Content(value);
@@ -12,10 +11,12 @@ export class Content extends ValueObject<string> {
   }
 
   private validateContentLenght(content: string) {
-    const isValid = content.length >= 5 && content.length <= 240;
+    const isValid =
+      content.length >= Content.MIN_LENGTH &&
+      content.length <= Content.MAX_LENGTH;
 
     if (!isValid) {
-      throw new Error('Content lenght error.');
+      throw new Error('Content lenght error');
     }
   }
 

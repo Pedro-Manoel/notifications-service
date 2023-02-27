@@ -3,5 +3,7 @@ export class NotificationDTO {
   content: string;
   category: string;
   recipientId: string;
+  readAt?: Date | null;
+  canceledAt?: Date | null;
   createdAt: Date;
 }

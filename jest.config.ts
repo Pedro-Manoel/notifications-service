@@ -5,13 +5,23 @@ import { compilerOptions } from './tsconfig.json';
 
 const config: Config = {
   moduleFileExtensions: ['js', 'json', 'ts'],
-  testRegex: '.*\\.spec\\.ts$',
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
 
-  collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage',
+  testRegex: '.*spec\\.ts$',
+
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/config/**/*.ts',
+    '!src/**/interfaces/**/*.ts',
+    '!src/infra/**/*.ts',
+    '!src/**/*.module.ts',
+    '!src/main.ts',
+  ],
+  coverageDirectory: './coverage',
+  coverageReporters: ['text-summary', 'lcov'],
+
   testEnvironment: 'node',
 
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {

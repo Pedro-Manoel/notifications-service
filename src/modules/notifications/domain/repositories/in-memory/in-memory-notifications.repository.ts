@@ -1,23 +1,27 @@
 import { InMemoryRepository } from '@core/domain/repositories/in-memory.repository';
 
 import { Notification } from '../../entities/notification';
-import { NotificationsRepository } from '../notifications.repository';
+import {
+  IFindAllFilters,
+  NotificationsRepository,
+} from '../notifications.repository';
+import { ICountFilters } from './../notifications.repository';
 
 export class InMemoryNotificationsRepository
   extends InMemoryRepository<Notification>
   implements NotificationsRepository
 {
-  async countManyByRecipientId(recipientId: string): Promise<number> {
+  async count({ recipientId }: ICountFilters): Promise<number> {
     const count = this.entities.filter((item) =>
-      item.recipientId.equals(recipientId),
+      recipientId ? item.recipientId.equals(recipientId) : true,
     ).length;
 
     return count;
   }
 
-  async findManyByRecipientId(recipientId: string): Promise<Notification[]> {
+  async findAll({ recipientId }: IFindAllFilters): Promise<Notification[]> {
     const notifications = this.entities.filter((item) =>
-      item.recipientId.equals(recipientId),
+      recipientId ? item.recipientId.equals(recipientId) : true,
     );
 
     return notifications;

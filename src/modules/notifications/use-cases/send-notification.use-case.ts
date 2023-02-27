@@ -1,7 +1,7 @@
 import { IUseCase } from '@core/domain/interfaces/use-case';
 import { Injectable } from '@nestjs/common';
 
-import { makeNotification } from '../domain/entities/factories/notification.factory';
+import { NotificationFactory } from '../domain/entities/factories/notification.factory';
 import { Notification } from '../domain/entities/notification';
 import { NotificationsRepository } from '../domain/repositories/notifications.repository';
 
@@ -26,14 +26,16 @@ export class SendNotificationUseCase
   ): Promise<ISendNotificationResponse> {
     const { recipientId, content, category } = request;
 
-    const notification = makeNotification({
+    const notification = NotificationFactory.makeNotification({
       recipientId,
       content,
       category,
     });
 
-    await this.notificationsRepository.create(notification);
+    const notificationCreated = await this.notificationsRepository.create(
+      notification,
+    );
 
-    return { notification };
+    return { notification: notificationCreated };
   }
 }
