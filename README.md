@@ -7,7 +7,7 @@
     <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Pedro-Manoel/notifications-service?style=flat-square">
     <img alt="Repository size" src="https://img.shields.io/github/repo-size/Pedro-Manoel/notifications-service?style=flat-square">
     <img alt="GitHub license" src="https://img.shields.io/github/license/Pedro-Manoel/notifications-service?style=flat-square"><br/>
-    <a href="https://insomnia.rest/run/?label=%20node-crud-videos&uri=https%3A%2F%2Fgithub.com%2FPedro-Manoel%2Fnode-crud-videos%2Fblob%2Fmain%2F.github%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+    <a href="https://insomnia.rest/run/?label=Notifications%20Service&uri=https%3A%2F%2Fgithub.com%2FPedro-Manoel%2Fnotifications-service%2Fblob%2Fmain%2Fpublic%2Fjsons%2FInsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </p>
 
 ## 🔖 Sobre
@@ -104,8 +104,6 @@ Microserviço de notificações desenvolvido com [Nestjs](https://nestjs.com/) n
 ## ✅ Testes
 
 ![image](public/docs/assets/images/testes.jpg)
-
-➡️ Para acessar o arquivo HTML dessa página clique [aqui](coverage/lcov-report/index.html)
 
 ## 📑 Swagger
 
