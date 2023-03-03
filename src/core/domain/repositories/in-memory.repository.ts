@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Entity } from '../entities/entity';
 
 export abstract class InMemoryRepository<T extends Entity<any>> {
