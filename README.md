@@ -34,7 +34,7 @@ Microserviço de notificações desenvolvido com [Nestjs](https://nestjs.com/) n
      $ cd notification-service
    ```
 
-3. Configure a aplicação utilizando o arquivo `.env.development` na fase de desenvolvimento, `.env.test` na fase de testes ou `.env.production` na fase de produção. Para o `.env.production` utilize o arquivo `.env.example` como base.
+3. Configure a aplicação utilizando o arquivo `.env.development` na fase de desenvolvimento, `.env.test` na fase de testes ou crie o `.env.production` na fase de produção. Para o `.env.production` utilize o arquivo `.env.example` como base.
 
 4. Execute o seguinte comando para fazer o download das dependências da aplicação:
 
