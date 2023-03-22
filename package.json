@@ -35,11 +35,13 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fastify/static": "^6.9.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/microservices": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/platform-fastify": "^9.3.12",
     "@nestjs/swagger": "^6.1.4",
     "@prisma/client": "^4.10.1",
     "class-transformer": "^0.5.1",
