@@ -1,0 +1,21 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Notification {
+  id String [pk]
+  recipientId String [not null]
+  content String [not null]
+  category CategoryType [not null]
+  readAt DateTime
+  canceledAt DateTime
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Enum CategoryType {
+  ALERT
+  NEWS
+  UPDATE
+  REMINDER
+  CONFIRMATION
+}

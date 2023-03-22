@@ -15,6 +15,7 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+
   const globalConfig = app.get(GlobalConfig);
 
   setSwagger(app);
